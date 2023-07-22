@@ -30,8 +30,9 @@
 }
 
 .divider{
-     height: 2px;
-     background: linear-gradient(to right, rgba(128, 128, 128, 0), #f4f4f4, rgba(128, 128, 128, 0));
+     height: 1px;
+     background: 
+     linear-gradient(to right,#FFF 0%,#eeeeee 35%,#eeeeee 65%,#FFF 100%);
 
      width: 100%;
 }
