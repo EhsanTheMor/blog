@@ -1,8 +1,10 @@
-body{
-     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-     font-size: 17px;
-     line-height: 1.7em;
-     letter-spacing: -0.025em;
-     color: #222;
-     visibility: visible !important;
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.7em;
+    letter-spacing: -0.025em;
+    color: #222;
+    visibility: visible !important;
+
+    overflow-y: scroll;
 }

@@ -1,0 +1,45 @@
+/* border: '1px gray solid',
+            padding: '5px 10px',
+            width: '190px',
+            translate: '-50%',
+            backgroundColor: 'white',
+            transition: 'all',
+            transitionDuration: '0.1s',
+            transitionTimingFunction: 'ease-in',
+            overflow: 'hidden',
+            position: 'absolute',
+            listStyle: 'none', */
+
+.navbar-drop-down {
+    position: absolute;
+    padding: 0 10px;
+    width: 190px;
+    transform: translateX(-50%);
+    overflow: hidden;
+
+    background-color: white;
+    transition: all 0.1s ease-in;
+    list-style: none;
+    border: 1px gray solid;
+    border-radius: 5px;
+}
+
+.navbar-drop-down-item {
+    padding: 5px 0;
+    position: relative;
+}
+
+.navbar-drop-down-item::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: -5px;
+    background: linear-gradient(
+        to right,
+        white 10%,
+        rgb(196, 196, 196) 50%,
+        white 100%
+    );
+}
