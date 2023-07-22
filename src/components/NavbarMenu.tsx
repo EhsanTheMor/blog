@@ -6,6 +6,7 @@ import { useRef } from 'react'
 
 export default function NavbarMenu() {
      const ulSpanElement = useRef<HTMLSpanElement>(null);
+     const inputMagnifierEl = useRef<HTMLInputElement>(null)
 
      const hoverEffect = (e: React.MouseEvent<HTMLLIElement>) => {
           const hoverElementXMiddle = e.currentTarget.offsetLeft + e.currentTarget.offsetWidth / 2;
@@ -18,11 +19,11 @@ export default function NavbarMenu() {
 
           (ulSpanElement.current as HTMLSpanElement).style.top = `${y - 3}px`;
           (ulSpanElement.current as HTMLSpanElement).style.left = `${x}px`;
-          ulSpanElement.current?.classList.add('show');
+          ulSpanElement.current?.classList.add('span-show');
      }
 
      const leaveEffect = () => {
-          ulSpanElement.current?.classList.remove('show')
+          ulSpanElement.current?.classList.remove('span-show')
      }
 
      return (
@@ -69,7 +70,11 @@ export default function NavbarMenu() {
                                    list_navbar-item-icon
                                    list_navbar-item-icon-magnifier'
                                    >
-                                        <SlMagnifier />
+                                        <input ref={inputMagnifierEl} className='list_navbar-item-input' type="text" placeholder='Hit enter to search' />
+                                        <SlMagnifier
+                                             onClick={() => {
+                                                  inputMagnifierEl.current?.classList.toggle('input-show')
+                                             }} />
                                    </li>
                                    <li className='
                                    list_navbar-item 
