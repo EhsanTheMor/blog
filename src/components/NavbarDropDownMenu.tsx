@@ -25,6 +25,7 @@ export default function NavbarDropDownMenu({ isHovered, dropDownList }: Props) {
 
         return (
             <li
+                key={item}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className='navbar-drop-down-item'

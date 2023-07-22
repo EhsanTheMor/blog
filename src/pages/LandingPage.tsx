@@ -10,6 +10,9 @@ export default function LandingPage() {
                <main>
                     <ContentSection />
                </main>
+               <div style={{
+                    margin: '100px 0'
+               }}></div>
           </>
      )
 }

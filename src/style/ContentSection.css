@@ -1,0 +1,114 @@
+.section {
+    margin-top: 70px;
+}
+
+.article-holder {
+    width: 640px;
+    margin: auto;
+}
+
+.article-header {
+    font-size: 23px;
+    line-height: 1.45em;
+    letter-spacing: 0.4px;
+    position: relative;
+
+    padding-bottom: 22px;
+    margin-bottom: 16px;
+}
+
+.article-header a {
+    text-decoration: none;
+    color: black;
+}
+
+.article-header a:hover {
+    cursor: pointer;
+}
+
+.article-header:hover::after {
+    background-color: red;
+}
+
+.article-header:hover::before {
+    background: linear-gradient(to right, red 0%, white 20%);
+}
+
+.article-header::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: black;
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+}
+
+.article-header::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, black 0%, white 20%);
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+}
+
+/* auther part */
+.auther-field {
+    display: flex;
+
+    gap: 10px;
+}
+
+.auther-field .avatar {
+    width: 40px;
+    height: 40px;
+
+    background-color: gray;
+    border-radius: 100%;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auther-field .auther-description {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+
+    justify-content: space-between;
+}
+
+.auther-field .auther-description h4 {
+    font-size: 13px;
+    line-height: 16px;
+
+    height: fit-content;
+}
+
+.auther-field .auther-description .description {
+    display: flex;
+    align-items: end;
+    gap: 5px;
+}
+
+.description p {
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0.6px;
+    height: fit-content;
+}
+
+.description p:hover {
+    cursor: pointer;
+    color: gray;
+}
