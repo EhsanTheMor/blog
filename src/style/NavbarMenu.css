@@ -15,6 +15,8 @@ nav{
      text-decoration: none;
 }
 
+/* two lists and their items */
+/* Lists */
 .lists_container{
      position: relative;
      display: flex;
@@ -24,6 +26,8 @@ nav{
      display: flex;
      list-style: none;
 }
+
+/* Items */
 
 .list_navbar-item{
      color: #525252;
@@ -53,17 +57,48 @@ nav{
 
      padding-right: 0;
      padding-left: 0;
+
+     display: flex;
+     align-items: center;
 }
 
 .list_navbar-item-icon-magnifier{
      margin-left: 0;
 }
 
+/* Input field in magifier item */
+
+.list_navbar-item-input{
+     border: none;
+     color: #666;
+     background-color: white;
+
+     width: 0;
+     padding-bottom: 0;
+     padding-right: 0;
+     padding-left: 0;
+     outline: none;
+
+     transition: all 0.3s ease-in;
+}
+
+.input-show{
+     width: 160px;
+     
+     padding-bottom: 3px;
+     padding-right: 22px;
+     padding-left: 11px;
+}
+
+/* The divider under the navbar */
+
 .full_divider{
      width: 100%;
      height: 0.8px;
      background: #eee;
 }
+
+/* The dot under the header menu */
 
 .list_navbar-span{
      width: 4px;
@@ -79,7 +114,7 @@ nav{
      background-color: #222;
 }
 
-.show{
+.span-show{
      opacity: 1;
      visibility: visible;
      display: inline;
