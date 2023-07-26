@@ -1,6 +1,9 @@
+import ReactMarkDown from 'react-markdown'
+
 import '../style/ContentSection.css'
 import Image from './Image'
 import { BiImage } from 'react-icons/bi'
+import { useEffect, useState } from 'react'
 
 const Title = ({ title }: { title: string }): JSX.Element => {
      return (
@@ -46,11 +49,28 @@ const AuthorDescription = () => {
 }
 
 export default function ContentSection() {
+     const [articles, setArticles] = useState([])
+
+     useEffect(() => {
+          const getData = async () => {
+               try {
+                    const res = await fetch("/articles")
+                    const data = await res.json()
+
+                    setArticles(data)
+               } catch (err) {
+                    console.log(err)
+               }
+
+          }
+          getData()
+
+     }, [])
+
      return (
           <div className='container'>
                <section className='section'>
                     <article>
-                         <Image source='/images/post1.jpg' alt='post1' />
                          <div className="article-holder">
                               <Title title='Business Partners Work at Modern Office' />
 
@@ -61,7 +81,28 @@ export default function ContentSection() {
                               </div>
                          </div>
 
+                         <Image sx={{ borderRadius: '5px', overflow: 'hidden' }} source='/images/post1.jpg' alt='post1' />
+
+                         <div className="article-markdown">
+                              {
+                                   articles.length && articles[0].passage.map((item: any, index: number) => (
+                                        <ReactMarkDown key={index}>{item}</ReactMarkDown>
+                                   ))
+                              }
+                              <div className='tags'>
+                                   {
+                                        articles.length && articles[0].tags.map((item: any, index: number) => (
+                                             <a key={index}>{item}</a>
+                                        ))
+                                   }
+                              </div>
+                         </div>
+
                     </article>
+                    <div className="share-section">
+                         <span>Share</span>
+                         <div className="social-media-links"></div>
+                    </div>
                </section>
           </div >
      )

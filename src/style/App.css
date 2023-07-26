@@ -5,6 +5,4 @@ body {
     letter-spacing: -0.025em;
     color: #222;
     visibility: visible !important;
-
-    overflow-y: scroll;
 }

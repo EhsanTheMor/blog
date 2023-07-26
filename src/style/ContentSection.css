@@ -5,6 +5,8 @@
 .article-holder {
     width: 640px;
     margin: auto;
+
+    margin-bottom: 66px;
 }
 
 .article-header {
@@ -111,4 +113,69 @@
 .description p:hover {
     cursor: pointer;
     color: gray;
+}
+
+.article-markdown {
+    width: 640px;
+    margin: auto;
+}
+
+.article-markdown p {
+    margin: 30px 0;
+
+    font-size: 1.05rem;
+    letter-spacing: 0.013rem;
+    line-height: 2;
+}
+
+.article-markdown blockquote {
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.55em;
+    color: #000;
+    font-family: Georgia, 'Times New Roman';
+    font-weight: bold;
+
+    position: relative;
+}
+
+.article-markdown blockquote::before {
+    content: '،،';
+    top: -5px;
+    left: -46px;
+    font-size: 3.5rem;
+    color: lightgray;
+    font-style: italic;
+
+    position: absolute;
+}
+
+.article-markdown h3 {
+    font-size: 21px;
+    line-height: 33px;
+    margin-top: 56px;
+}
+
+.article-markdown .tags {
+    display: flex;
+    gap: 10px;
+}
+
+.article-markdown .tags a {
+    font-weight: bold;
+    border-bottom: 2px dotted gray;
+    text-decoration: none;
+}
+
+.article-markdown .tags a:hover {
+    cursor: pointer;
+    color: red;
+    border-bottom: black dotted 2px;
+}
+
+.share-section {
+    max-width: 640px;
+    margin: auto;
+    margin-top: 36px;
+    overflow: hidden;
 }
