@@ -6,3 +6,15 @@ body {
     color: #222;
     visibility: visible !important;
 }
+
+.w-640 {
+    width: 640px;
+}
+
+.m-auto {
+    margin: auto;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}

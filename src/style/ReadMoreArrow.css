@@ -1,0 +1,39 @@
+.read-more-arrow-holder {
+    position: absolute;
+    left: calc(100%);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.read-more-arrow-holder:hover span {
+    margin-left: 4px;
+}
+
+.read-more-arrow-holder span {
+    width: 4px;
+    height: 1px;
+    margin-left: 2px;
+    background-color: gray;
+
+    border-radius: 1000px;
+    transition: all ease-in 0.2s;
+}
+
+.read-more-arrow-holder span:nth-last-child(1) {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    border-right: gray 2px solid;
+    border-bottom: gray 2px solid;
+
+    transform: rotate(-45deg);
+}
+
+.read-more-arrow-holder span:nth-last-child(1):hover {
+    border-right: red 2px solid;
+    border-bottom: red 2px solid;
+}

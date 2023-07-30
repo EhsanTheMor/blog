@@ -1,9 +1,13 @@
-import ReactMarkDown from 'react-markdown'
-
 import '../style/ContentSection.css'
 import Image from './Image'
 import { BiImage } from 'react-icons/bi'
 import { useEffect, useState } from 'react'
+import PaginationBar from './PaginationBar'
+
+import { AiFillFacebook, AiOutlineTwitter } from 'react-icons/ai'
+import { BsPinterest, BsTelegram } from 'react-icons/bs'
+import { GoComment } from 'react-icons/go'
+import ReadMoreLinkWithArrow from './ReadMoreLinkWithArrow'
 
 const Title = ({ title }: { title: string }): JSX.Element => {
      return (
@@ -48,8 +52,59 @@ const AuthorDescription = () => {
      )
 }
 
+const RenderBlogPostPreRepresentation = ({ article }: { article: any }) => {
+
+     return (
+          <div className='blog-post-holder'>
+
+
+               <Image sx={{ borderRadius: '5px', overflow: 'hidden' }} source={`/images/${article.image}`} alt='post1' />
+
+               <div className="article-holder">
+                    <Title title={article.title} />
+
+                    <div className="auther-field">
+                         <Avatar source='asdf' />
+
+                         <AuthorDescription />
+                    </div>
+               </div>
+
+               <div style={{ color: '#737373' }} className="w-640 m-auto">
+                    {article.description}...
+
+                    <div style={{ paddingTop: '12px' }} className="read-more">
+                         <ReadMoreLinkWithArrow link={`/actiles/${article.id}`} />
+                         <ul>
+                              <li>
+                                   <AiFillFacebook />
+                              </li>
+                              <li>
+                                   <AiOutlineTwitter />
+                              </li>
+                              <li>
+                                   <BsPinterest />
+                              </li>
+                              <li>
+                                   <BsTelegram />
+                              </li>
+                              <li>
+                                   <GoComment />
+                              </li>
+                         </ul>
+                    </div>
+               </div>
+
+          </div>
+     )
+}
+
 export default function ContentSection() {
+     const NUMBER_OF_POSTS_IN_PAGE = 5;
+
      const [articles, setArticles] = useState([])
+     const [pages, setPages] = useState<number[]>([])
+     const [activePage, setActivePage] = useState<number>(1)
 
      useEffect(() => {
           const getData = async () => {
@@ -58,6 +113,13 @@ export default function ContentSection() {
                     const data = await res.json()
 
                     setArticles(data)
+
+                    //Catches the whole number of articles from the fetch and found out how 
+                    //many pages should we have and returns the pages as array.
+                    const numberOfPagesZeroBase = [...Array(Math.floor(data.length / NUMBER_OF_POSTS_IN_PAGE) + 1).keys()];
+                    const numberOfPagesOneBase = numberOfPagesZeroBase.map(number => number + 1)
+
+                    setPages(() => numberOfPagesOneBase)
                } catch (err) {
                     console.log(err)
                }
@@ -68,42 +130,26 @@ export default function ContentSection() {
      }, [])
 
      return (
-          <div className='container'>
+          <div style={{ marginBottom: '50px' }} className='container'>
+
                <section className='section'>
-                    <article>
-                         <div className="article-holder">
-                              <Title title='Business Partners Work at Modern Office' />
 
-                              <div className="auther-field">
-                                   <Avatar source='asdf' />
+                    {
+                         // This code renders the number of articles match with the constat
+                         // In each page.
+                         // first slices the all articles to selected part and then renders it.
+                         articles.length > 0 && articles
+                              .slice(
+                                   (activePage - 1) * NUMBER_OF_POSTS_IN_PAGE,
+                                   activePage * NUMBER_OF_POSTS_IN_PAGE
+                              )
+                              .map((item: any) => (
+                                   <RenderBlogPostPreRepresentation key={item.id} article={item} />
+                              ))
+                    }
 
-                                   <AuthorDescription />
-                              </div>
-                         </div>
-
-                         <Image sx={{ borderRadius: '5px', overflow: 'hidden' }} source='/images/post1.jpg' alt='post1' />
-
-                         <div className="article-markdown">
-                              {
-                                   articles.length && articles[0].passage.map((item: any, index: number) => (
-                                        <ReactMarkDown key={index}>{item}</ReactMarkDown>
-                                   ))
-                              }
-                              <div className='tags'>
-                                   {
-                                        articles.length && articles[0].tags.map((item: any, index: number) => (
-                                             <a key={index}>{item}</a>
-                                        ))
-                                   }
-                              </div>
-                         </div>
-
-                    </article>
-                    <div className="share-section">
-                         <span>Share</span>
-                         <div className="social-media-links"></div>
-                    </div>
                </section>
+               <PaginationBar pages={pages} activePage={activePage} setActivePage={setActivePage} />
           </div >
      )
 }
