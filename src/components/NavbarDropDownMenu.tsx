@@ -1,3 +1,4 @@
+import { useShowCaseContext } from '../context/ShowCaseContext'
 import '../style/NavbarDropDownMenu.css'
 import { CSSProperties, useState } from 'react'
 
@@ -23,11 +24,25 @@ export default function NavbarDropDownMenu({ isHovered, dropDownList }: Props) {
     const renderDropDownListItem = (item: string): JSX.Element => {
         const [isHovered, setIsHovered] = useState<Boolean>(false)
 
+        const { setState } = useShowCaseContext()
+
+        const clickHandler = () => {
+            switch (item) {
+                case 'Default Layout':
+                    return setState('Default')
+                case 'List Blog Layout':
+                    return setState('list')
+                default:
+                    return 'Default'
+            }
+        }
+
         return (
             <li
                 key={item}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
+                onClick={() => clickHandler()}
                 className='navbar-drop-down-item'
             >
                 <a
