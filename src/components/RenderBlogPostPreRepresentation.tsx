@@ -27,25 +27,53 @@ export default function RenderBlogPostPreRepresentation({ article }: { article: 
 
             {/* This classless div and the div below are for different kind of show */}
             <div>
-                <Image sx={{ borderRadius: '5px', overflow: 'hidden', width: imgWidth() }} source={`/images/${article.image}`} alt='post1' />
+
+                <Image
+                    sx={{
+                        borderRadius: '5px',
+                        overflow: 'hidden',
+                        width: imgWidth()
+                    }}
+                    source={`/images/${article.image}`} alt='post1'
+                />
+
             </div>
 
             <div style={{ padding: state === 'Default' ? '20px 10px' : '' }}>
-                <div className={`${state === 'Default' ? 'article-holder' : 'article-holder article-holder-list'}`}>
-                    <Title title={article.title} />
+
+                <div
+                    className={`${state === 'Default' ?
+                        'article-holder' :
+                        'article-holder article-holder-list'}`}
+                >
+
+                    <Title title={article.title} source={article.id} />
 
                     <div className="auther-field">
                         <Avatar source='asdf' />
 
                         <AuthorDescription />
                     </div>
+
                 </div>
 
-                <div className={`${state === 'Default' ? 'article-description' : 'article-description article-description-list'}`}>
-                    {state === 'Default' ? (article.description) : article.description.slice(0, 100)}...
+                <div
+                    className={`${state === 'Default' ?
+                        'article-description' :
+                        'article-description article-description-list'}`}
+                >
 
-                    <div style={{ paddingTop: '12px' }} className="read-more">
-                        <ReadMoreLinkWithArrow link={`/actiles/${article.id}`} />
+                    {state === 'Default' ?
+                        (article.description) :
+                        article.description.slice(0, 100)}...
+
+                    <div
+                        style={{ paddingTop: '12px' }}
+                        className="read-more"
+                    >
+
+                        <ReadMoreLinkWithArrow link={`/article/${article.id}`} />
+
                         <ul>
                             <li>
                                 <AiFillFacebook />
@@ -63,6 +91,7 @@ export default function RenderBlogPostPreRepresentation({ article }: { article: 
                                 <GoComment />
                             </li>
                         </ul>
+
                     </div>
                 </div>
             </div>

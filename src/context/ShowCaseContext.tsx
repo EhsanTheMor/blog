@@ -15,7 +15,7 @@ export const useShowCaseContext = () => {
 }
 
 export default function ShowCaseContextProvider({ children }: { children: ReactNode }): JSX.Element {
-    const [showCaseType, setShowCaseType] = useState<ShowCaseType>('list');
+    const [showCaseType, setShowCaseType] = useState<ShowCaseType>('Default');
 
     return (
         <ShowCaseContext.Provider value={{ state: showCaseType, setState: setShowCaseType }}>

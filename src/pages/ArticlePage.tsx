@@ -1,15 +1,22 @@
+import '../style/ContentSection.css'
 import { useParams } from "react-router-dom"
+import Image from '../components/Image'
+import Title from "../components/Title";
+import AuthorDescription from "../components/AuthorDescription";
+import Avatar from "../components/Avatar";
+import ReactMarkDown from 'react-markdown';
+import { data } from '../data/data'
 
 export default function ArticlePage() {
     const params = useParams<{ id: string }>();
 
-    const RenderBlogPost = ({ articles }: { articles: any[] }) => {
+    const RenderBlogPost = ({ article }: { article: typeof data.articles[0] }) => {
         return (
             <>
-                <div className='blog-post-holder'>
+                <div style={{ marginTop: '50px' }} className='blog-post-holder'>
 
                     <div className="article-holder">
-                        <Title title='Business Partners Work at Modern Office' />
+                        <Title title='Business Partners Work at Modern Office' source={article.id} />
 
                         <div className="auther-field">
                             <Avatar source='asdf' />
@@ -18,17 +25,19 @@ export default function ArticlePage() {
                         </div>
                     </div>
 
-                    <Image sx={{ borderRadius: '5px', overflow: 'hidden' }} source='/images/post1.jpg' alt='post1' />
+                    <div className="container">
+                        <Image sx={{ borderRadius: '5px', overflow: 'hidden' }} source={`/images/${article.image}`} alt='post1' />
+                    </div>
 
                     <div className="article-markdown w-640 m-auto">
                         {
-                            articles.length > 0 && articles[0].passage.map((item: any, index: number) => (
+                            article.passage.map((item: any, index: number) => (
                                 <ReactMarkDown key={index}>{item}</ReactMarkDown>
                             ))
                         }
                         <div className='tags'>
                             {
-                                articles.length > 0 && articles[0].tags.map((item: any, index: number) => (
+                                article.tags.map((item: any, index: number) => (
                                     <a key={index}>{item}</a>
                                 ))
                             }
@@ -38,7 +47,7 @@ export default function ArticlePage() {
                 </div>
 
 
-                <div className="share-section">
+                <div style={{ marginBottom: '40px' }} className="share-section">
                     <span>Share</span>
                     <div className="social-media-links"></div>
                 </div>
@@ -46,9 +55,18 @@ export default function ArticlePage() {
         )
     }
 
+    const findArticle = (id: string | undefined) => {
+        if (!id) return null
+        const article = data.articles.find(article => article.id === params.id)
+        if (!article) return null
+        return article
+    }
+
     return (
         <div>
-            <h1>This is for the article {params.id}</h1>
+            {
+                findArticle(params.id) && RenderBlogPost({ article: findArticle(params.id)!! })
+            }
         </div>
     )
 }

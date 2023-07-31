@@ -1,6 +1,6 @@
 import { useShowCaseContext } from '../context/ShowCaseContext';
 
-export default function Title({ title }: { title: string }) {
+export default function Title({ title, source }: { title: string, source: string }) {
     const { state } = useShowCaseContext()
 
     const headerClass = () => {
@@ -16,7 +16,7 @@ export default function Title({ title }: { title: string }) {
 
     return (
         <h3 className={headerClass()}>
-            <a href="#">
+            <a href={`/article/${source}`}>
                 {title}
             </a>
         </h3>

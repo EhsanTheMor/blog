@@ -73,7 +73,7 @@ export default function NavbarMenu() {
                <div className="container" style={{ position: 'sticky', top: '0px', zIndex: '10' }}>
                     <nav style={{ backgroundColor: 'white' }}>
                          <h1 className="logo_navbar">
-                              <a className='logo_navbar-link' href="#">
+                              <a className='logo_navbar-link' href="/">
                                    EhsanTheMor
                               </a>
                          </h1>
